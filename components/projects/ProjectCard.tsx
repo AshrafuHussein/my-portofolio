@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, MouseEvent } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
@@ -11,7 +10,6 @@ import {
   Layers,
   Code2,
   ArrowUpRight,
-  Sparkles,
 } from 'lucide-react';
 
 export interface ProjectTelemetry {
@@ -51,32 +49,13 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({ project, index, onSelectProject }: ProjectCardProps) {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovered, setIsHovered] = useState(false);
-
-  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.06 }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="group relative rounded-2xl bg-[#0b100d] border border-emerald-500/20 hover:border-emerald-500/45 transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-xl"
-      style={{
-        background: isHovered
-          ? `radial-gradient(400px circle at ${mousePos.x}px ${mousePos.y}px, rgba(16, 185, 129, 0.08), transparent 80%), #0b100d`
-          : '#0b100d',
-      }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      className="group relative rounded-2xl bg-[#0b100d] border border-emerald-500/20 hover:border-emerald-500/50 hover:shadow-[0_0_25px_rgba(16,185,129,0.12)] transition-all duration-300 overflow-hidden flex flex-col justify-between shadow-xl"
     >
       {/* Corner crosshairs (Supabase signature style) */}
       <span className="absolute top-2 left-2 text-emerald-500/20 text-xs font-mono select-none pointer-events-none">+</span>
@@ -89,7 +68,7 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
             src={project.image}
             alt={project.title}
             fill
-            className="object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-85 group-hover:opacity-100"
+            className="object-cover object-top group-hover:scale-105 transition-transform duration-500 opacity-85 group-hover:opacity-100"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
 

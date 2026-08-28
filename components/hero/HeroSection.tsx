@@ -1,11 +1,13 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useRef } from 'react';
 import { gooeyToast } from 'goey-toast';
 import { getSylvaHeroHtml } from './sylvaTemplate';
 
 export function HeroSection() {
   const [mounted, setMounted] = useState(false);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const html = useMemo(() => getSylvaHeroHtml(), []);
 
   useEffect(() => {
@@ -41,13 +43,41 @@ export function HeroSection() {
     };
 
     window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
+
+    // Pause WebGL rendering inside hero iframe when user scrolls past hero section
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (iframeRef.current?.contentWindow) {
+            iframeRef.current.contentWindow.postMessage(
+              { type: 'set-visibility', visible: entry.isIntersecting },
+              '*'
+            );
+          }
+        });
+      },
+      { threshold: 0.05 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      window.removeEventListener('message', handleMessage);
+      observer.disconnect();
+    };
   }, []);
 
   return (
-    <section id="home" className="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#080f0b]">
+    <section
+      ref={sectionRef}
+      id="home"
+      className="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#080f0b]"
+    >
       {mounted ? (
         <iframe
+          ref={iframeRef}
           title="Ashrafu Hussein — Sylva Hero"
           srcDoc={html}
           sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-downloads"

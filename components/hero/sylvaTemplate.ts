@@ -1350,7 +1350,9 @@ function frame(now){
   gl.uniform1f(pComp.u.uPunch, C.punch);
   drawTo(null);
 
-  requestAnimationFrame(frame);
+  if (window.__isHeroVisible !== false) {
+    requestAnimationFrame(frame);
+  }
 }
 
 const on = {over:false, press:false, focus:false};
@@ -1401,6 +1403,27 @@ requestAnimationFrame(frame);
   'use strict';
 
   var REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isHeroVisible = true;
+  window.__isHeroVisible = true;
+
+  window.addEventListener('message', function(e) {
+    if (e.data && e.data.type === 'set-visibility') {
+      var nextVis = !!e.data.visible;
+      if (nextVis !== isHeroVisible) {
+        isHeroVisible = nextVis;
+        window.__isHeroVisible = nextVis;
+        if (isHeroVisible) {
+          startTick();
+        }
+      }
+    }
+  });
+
+  document.addEventListener('visibilitychange', function() {
+    isHeroVisible = !document.hidden;
+    window.__isHeroVisible = isHeroVisible;
+    if (isHeroVisible) startTick();
+  });
 
   var PARALLAX = '.dock,.headline,.lede,.pill,.play-wrap,' +
                  '.stat--a,.stat--b,.card--about,.knob-float,.card--stove,.scroll';
@@ -1411,9 +1434,16 @@ requestAnimationFrame(frame);
   var ticking = false, parOn = false;
 
   function startTick() {
-    if (ticking) return;
+    if (ticking || !isHeroVisible) return;
     ticking = true;
-    (function loop() { requestAnimationFrame(loop); tick(); })();
+    (function loop() {
+      if (!isHeroVisible) {
+        ticking = false;
+        return;
+      }
+      requestAnimationFrame(loop);
+      tick();
+    })();
   }
 
   var lastTick = 0;
@@ -1427,8 +1457,8 @@ requestAnimationFrame(frame);
     if (parOn) {
       smooth.x += (pointer.x - smooth.x) * 0.055;
       smooth.y += (pointer.y - smooth.y) * 0.055;
-      var nx = Math.round(smooth.x * 1000) / 1000, ny = Math.round(smooth.y * 1000) / 1000;
-      if (nx !== lastX || ny !== lastY) {
+      var nx = Math.round(smooth.x * 500) / 500, ny = Math.round(smooth.y * 500) / 500;
+      if (lastX === null || Math.abs(nx - lastX) > 0.004 || Math.abs(ny - lastY) > 0.004) {
         lastX = nx; lastY = ny;
         heroEl.style.setProperty('--px', nx);
         heroEl.style.setProperty('--py', ny);
@@ -2772,12 +2802,12 @@ requestAnimationFrame(frame);
   function build() {
     var narrow = NARROW.matches;
     var small = narrow || (window.innerWidth * window.innerHeight) < 620000;
-    var BLADES_NEAR = small ? 70000 : 190000;
-    var BLADES_FAR  = small ? 20000 :  60000;
+    var BLADES_NEAR = small ? 18000 : 42000;
+    var BLADES_FAR  = small ?  6000 : 14000;
 
-    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: !small });
+    renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false, powerPreference: 'high-performance' });
     renderer.setClearColor(0x000000, 0);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, small ? 1.6 : 2));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = 1.30;
     if ('sRGBEncoding' in THREE) renderer.outputEncoding = THREE.sRGBEncoding;
@@ -2807,7 +2837,7 @@ requestAnimationFrame(frame);
 
     nearGroup = assembleRoot(nearLimbs, {
       aspect: ARCH.aspect, haze: 0.15, fog: 0.0, alpha: 1.0, order: 2,
-      blades: BLADES_NEAR, ferns: small ? 26 : 46, flowers: small ? 120 : 260,
+      blades: BLADES_NEAR, ferns: small ? 18 : 32, flowers: small ? 60 : 140,
       fernSize: [0.22, 0.50], flowerSize: [0.055, 0.118], mainLimbs: mainCount, wire: true,
       mouse: uMouseNear, mouseR: 1.20
     });
@@ -2817,7 +2847,7 @@ requestAnimationFrame(frame);
     farGroup = assembleRoot(buildFarRoot(), {
       aspect: FAR.aspect, haze: 0.16, fog: 0.26, alpha: 1.0, order: 0,
       hazeCol: [0.150, 0.164, 0.120], hazeLift: 0.92,
-      blades: BLADES_FAR, ferns: small ? 8 : 16, flowers: small ? 40 : 90,
+      blades: BLADES_FAR, ferns: small ? 6 : 12, flowers: small ? 24 : 50,
       fernSize: [0.26, 0.56], flowerSize: [0.034, 0.062],
       mask: [0.4, 3.4, 0.0, 0.42], wire: true,
       mouse: uMouseFar, mouseR: 1.4
@@ -2855,7 +2885,7 @@ requestAnimationFrame(frame);
     glowMesh.position.z = -320;
     scene.add(glowMesh);
 
-    var COUNT = (NARROW.matches || (window.innerWidth * window.innerHeight) < 620000) ? 1500 : 4200;
+    var COUNT = (NARROW.matches || (window.innerWidth * window.innerHeight) < 620000) ? 500 : 1200;
     var pos = new Float32Array(COUNT * 3);
     var seed = new Float32Array(COUNT * 4);
     for (var i = 0; i < COUNT; i++) {

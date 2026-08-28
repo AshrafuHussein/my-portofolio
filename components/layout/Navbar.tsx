@@ -18,42 +18,67 @@ export function Navbar() {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
+    // 1. Passive scroll listener for navbar elevation/fade
+    let ticking = false;
+    let isScrolledState = false;
+
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      const sections = ['home', 'about', 'projects', 'skills', 'timeline', 'contact'];
-      const scrollPos = window.scrollY + 200;
-
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(section);
-            break;
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const shouldScroll = window.scrollY > 20;
+          if (shouldScroll !== isScrolledState) {
+            isScrolledState = shouldScroll;
+            setScrolled(shouldScroll);
           }
-        }
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+
+    // 2. High-performance IntersectionObserver for active section tracking (zero layout thrashing)
+    const sectionIds = ['home', 'about', 'projects', 'skills', 'timeline', 'contact'];
+    const sectionElements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -60% 0px',
+        threshold: 0,
+      }
+    );
+
+    sectionElements.forEach((el) => observer.observe(el));
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
+    };
   }, []);
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-5 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-5 transition-all duration-300 ${
         scrolled
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 -translate-y-4 pointer-events-none'
       }`}
+      style={{ willChange: 'opacity, transform' }}
     >
-      <div
-        className="max-w-7xl mx-auto rounded-full transition-all duration-300 bg-surface/90 backdrop-blur-xl border border-surface-border/80 shadow-glass py-2.5 px-6"
-      >
+      <div className="max-w-7xl mx-auto rounded-full transition-all duration-300 bg-surface/90 backdrop-blur-xl border border-surface-border/80 shadow-glass py-2.5 px-6">
         <div className="flex items-center justify-between">
-          {/* Brand Wordmark (Folioblox structure with green accent) */}
+          {/* Brand Wordmark */}
           <a
             href="#home"
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full"
@@ -75,7 +100,7 @@ export function Navbar() {
             </div>
           </a>
 
-          {/* Desktop Navigation Links & CTA (Folioblox Header Right Structure) */}
+          {/* Desktop Navigation Links & CTA */}
           <div className="hidden md:flex items-center gap-8">
             <nav className="flex items-center gap-6 text-sm font-medium">
               {NAV_LINKS.map((link) => {
@@ -84,7 +109,7 @@ export function Navbar() {
                   <a
                     key={link.href}
                     href={link.href}
-                    className={`transition-colors duration-200 ${
+                    className={`transition-colors duration-150 ${
                       isActive
                         ? 'text-emerald-300 font-semibold drop-shadow-[0_0_8px_rgba(16,185,129,0.5)]'
                         : 'text-slate-200/85 hover:text-emerald-200'
@@ -96,7 +121,7 @@ export function Navbar() {
               })}
             </nav>
 
-            {/* Folioblox Pill CTA with Circular Icon Container in Emerald Green */}
+            {/* Pill CTA */}
             <a
               href="#contact"
               className="inline-flex items-center pl-5 pr-1.5 py-1.5 rounded-full bg-white text-slate-950 font-semibold text-xs sm:text-sm hover:bg-emerald-50 hover:shadow-glow transition-all duration-200 group active:scale-[0.98]"

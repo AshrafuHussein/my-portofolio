@@ -1,105 +1,153 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export function SmoothFollower() {
-  const [mounted, setMounted] = useState(false);
-  const mousePosition = useRef({ x: -100, y: -100 });
-  const dotPosition = useRef({ x: -100, y: -100 });
-  const borderDotPosition = useRef({ x: -100, y: -100 });
-  const [renderPos, setRenderPos] = useState({
-    dot: { x: -100, y: -100 },
-    border: { x: -100, y: -100 },
-  });
-  const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  const DOT_SMOOTHNESS = 0.2;
-  const BORDER_DOT_SMOOTHNESS = 0.1;
+  const dotRef = useRef<HTMLDivElement>(null);
+  const borderRef = useRef<HTMLDivElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    setMounted(true);
+    // Only run on desktop devices with fine pointer (mouse)
+    const isFinePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!isFinePointer) return;
+
+    let mouseX = -100;
+    let mouseY = -100;
+    let dotX = -100;
+    let dotY = -100;
+    let borderX = -100;
+    let borderY = -100;
+    let isVisible = false;
+    let isHovering = false;
+    let rafId: number | null = null;
+    let isRunning = false;
+
+    const DOT_SMOOTHNESS = 0.25;
+    const BORDER_DOT_SMOOTHNESS = 0.12;
+
+    const updatePosition = () => {
+      const dotDiffX = mouseX - dotX;
+      const dotDiffY = mouseY - dotY;
+      const borderDiffX = mouseX - borderX;
+      const borderDiffY = mouseY - borderY;
+
+      dotX += dotDiffX * DOT_SMOOTHNESS;
+      dotY += dotDiffY * DOT_SMOOTHNESS;
+      borderX += borderDiffX * BORDER_DOT_SMOOTHNESS;
+      borderY += borderDiffY * BORDER_DOT_SMOOTHNESS;
+
+      if (dotRef.current) {
+        dotRef.current.style.transform = `translate3d(${dotX}px, ${dotY}px, 0) translate(-50%, -50%)`;
+      }
+      if (borderRef.current) {
+        borderRef.current.style.transform = `translate3d(${borderX}px, ${borderY}px, 0) translate(-50%, -50%)`;
+      }
+
+      // Stop loop when close enough to mouse position to save 100% CPU/GPU
+      const isSettled =
+        Math.abs(dotDiffX) < 0.1 &&
+        Math.abs(dotDiffY) < 0.1 &&
+        Math.abs(borderDiffX) < 0.1 &&
+        Math.abs(borderDiffY) < 0.1;
+
+      if (!isSettled) {
+        rafId = requestAnimationFrame(updatePosition);
+      } else {
+        isRunning = false;
+        rafId = null;
+      }
+    };
+
+    const startLoop = () => {
+      if (!isRunning) {
+        isRunning = true;
+        rafId = requestAnimationFrame(updatePosition);
+      }
+    };
 
     const handleMouseMove = (e: MouseEvent) => {
-      mousePosition.current = { x: e.clientX, y: e.clientY };
-      setIsVisible(true);
-    };
-    const handleMouseEnter = () => setIsHovering(true);
-    const handleMouseLeave = () => setIsHovering(false);
+      mouseX = e.clientX;
+      mouseY = e.clientY;
 
-    // Add event listeners
-    window.addEventListener("mousemove", handleMouseMove);
-    const interactiveElements = document.querySelectorAll(
-      "a, button, img, input, textarea, select, [role='button']"
-    );
-    interactiveElements.forEach((element) => {
-      element.addEventListener("mouseenter", handleMouseEnter);
-      element.addEventListener("mouseleave", handleMouseLeave);
-    });
+      if (!isVisible) {
+        isVisible = true;
+        if (wrapperRef.current) {
+          wrapperRef.current.style.opacity = "1";
+        }
+      }
 
-    // Animation loop for smooth interpolation
-    let animationId: number;
-    const animate = () => {
-      const lerp = (start: number, end: number, factor: number) => {
-        return start + (end - start) * factor;
-      };
-      dotPosition.current.x = lerp(dotPosition.current.x, mousePosition.current.x, DOT_SMOOTHNESS);
-      dotPosition.current.y = lerp(dotPosition.current.y, mousePosition.current.y, DOT_SMOOTHNESS);
-      borderDotPosition.current.x = lerp(
-        borderDotPosition.current.x,
-        mousePosition.current.x,
-        BORDER_DOT_SMOOTHNESS
-      );
-      borderDotPosition.current.y = lerp(
-        borderDotPosition.current.y,
-        mousePosition.current.y,
-        BORDER_DOT_SMOOTHNESS
-      );
-      setRenderPos({
-        dot: { x: dotPosition.current.x, y: dotPosition.current.y },
-        border: { x: borderDotPosition.current.x, y: borderDotPosition.current.y },
-      });
-      animationId = requestAnimationFrame(animate);
+      startLoop();
     };
 
-    animationId = requestAnimationFrame(animate);
+    const handleMouseLeave = () => {
+      isVisible = false;
+      if (wrapperRef.current) {
+        wrapperRef.current.style.opacity = "0";
+      }
+    };
+
+    // Event delegation for hover detection on interactive elements (zero querySelectorAll overhead)
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const interactive = target.closest("a, button, input, textarea, select, [role='button'], .cursor-pointer");
+      const shouldHover = !!interactive;
+
+      if (shouldHover !== isHovering) {
+        isHovering = shouldHover;
+        if (borderRef.current) {
+          if (isHovering) {
+            borderRef.current.style.width = "44px";
+            borderRef.current.style.height = "44px";
+            borderRef.current.style.boxShadow = "0 0 16px rgba(16, 185, 129, 0.45)";
+            borderRef.current.style.borderColor = "rgba(52, 211, 153, 0.9)";
+          } else {
+            borderRef.current.style.width = "28px";
+            borderRef.current.style.height = "28px";
+            borderRef.current.style.boxShadow = "none";
+            borderRef.current.style.borderColor = "rgba(52, 211, 153, 0.6)";
+          }
+        }
+      }
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    document.addEventListener("mouseleave", handleMouseLeave, { passive: true });
+    document.addEventListener("mouseover", handleMouseOver, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      interactiveElements.forEach((element) => {
-        element.removeEventListener("mouseenter", handleMouseEnter);
-        element.removeEventListener("mouseleave", handleMouseLeave);
-      });
-      cancelAnimationFrame(animationId);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseover", handleMouseOver);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
-  if (!mounted) return null;
-
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">
+    <div
+      ref={wrapperRef}
+      className="pointer-events-none fixed inset-0 z-[9999] hidden md:block opacity-0 transition-opacity duration-300"
+      style={{ willChange: "opacity" }}
+    >
       {/* Inner Dot in Emerald */}
       <div
-        className="absolute rounded-full bg-emerald-400 transition-opacity duration-300 pointer-events-none"
+        ref={dotRef}
+        className="absolute top-0 left-0 rounded-full bg-emerald-400 pointer-events-none"
         style={{
           width: "8px",
           height: "8px",
-          transform: "translate(-50%, -50%)",
-          left: `${renderPos.dot.x}px`,
-          top: `${renderPos.dot.y}px`,
-          opacity: isVisible ? 1 : 0,
+          willChange: "transform",
         }}
       />
       {/* Outer Border Dot in Emerald */}
       <div
-        className="absolute rounded-full border border-emerald-400/80 transition-[width,height,opacity,box-shadow] duration-300 pointer-events-none"
+        ref={borderRef}
+        className="absolute top-0 left-0 rounded-full border border-emerald-400/60 transition-[width,height,box-shadow,border-color] duration-200 pointer-events-none"
         style={{
-          width: isHovering ? "44px" : "28px",
-          height: isHovering ? "44px" : "28px",
-          transform: "translate(-50%, -50%)",
-          left: `${renderPos.border.x}px`,
-          top: `${renderPos.border.y}px`,
-          opacity: isVisible ? 1 : 0,
-          boxShadow: isHovering ? "0 0 16px rgba(16, 185, 129, 0.45)" : "none",
+          width: "28px",
+          height: "28px",
+          willChange: "transform",
         }}
       />
     </div>
