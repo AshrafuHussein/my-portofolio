@@ -69,21 +69,21 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-5 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 px-3 sm:px-8 lg:px-12 pt-3 sm:pt-5 transition-all duration-300 ${
         scrolled
           ? 'opacity-100 translate-y-0 pointer-events-auto'
           : 'opacity-0 -translate-y-4 pointer-events-none'
       }`}
       style={{ willChange: 'opacity, transform' }}
     >
-      <div className="max-w-7xl mx-auto rounded-full transition-all duration-300 bg-surface/90 backdrop-blur-xl border border-surface-border/80 shadow-glass py-2.5 px-6">
+      <div className="max-w-7xl mx-auto rounded-full transition-all duration-300 bg-surface/90 backdrop-blur-xl border border-surface-border/80 shadow-glass py-2 px-3.5 sm:py-2.5 sm:px-6">
         <div className="flex items-center justify-between">
           {/* Brand Wordmark */}
           <a
             href="#home"
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full"
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full"
           >
-            <div className="relative w-8 h-8 rounded-full overflow-hidden border border-emerald-500/30 group-hover:border-emerald-400 transition-colors shadow-glow">
+            <div className="relative w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden border border-emerald-500/30 group-hover:border-emerald-400 transition-colors shadow-glow flex-none">
               <Image
                 src="/img/ashrafu hussein.png"
                 alt="Ashrafu Hussein"
@@ -93,7 +93,7 @@ export function Navbar() {
               />
             </div>
             <div className="flex items-center gap-2">
-              <span className="font-bold text-base sm:text-lg text-white group-hover:text-emerald-300 transition-colors tracking-tight">
+              <span className="font-bold text-sm sm:text-base lg:text-lg text-white group-hover:text-emerald-300 transition-colors tracking-tight">
                 Ashrafu Hussein
               </span>
               <span className="hidden sm:inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
@@ -137,10 +137,10 @@ export function Navbar() {
           <div className="flex items-center gap-2 md:hidden">
             <a
               href="#contact"
-              className="inline-flex items-center pl-3.5 pr-1 py-1 rounded-full bg-white text-slate-950 font-semibold text-xs"
+              className="inline-flex items-center min-h-[34px] pl-3 pr-1 py-1 rounded-full bg-white text-slate-950 font-semibold text-xs active:scale-95 transition-transform"
             >
               <span className="mr-1.5">Contact</span>
-              <span className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center">
+              <span className="w-5 h-5 rounded-full bg-emerald-600 text-white flex items-center justify-center">
                 <ArrowUpRight className="w-3 h-3 stroke-[2.5]" />
               </span>
             </a>
@@ -148,24 +148,24 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-xl text-slate-200 hover:text-white bg-surface/80 border border-surface-border transition-colors"
+              className="p-2 min-h-[36px] min-w-[36px] flex items-center justify-center rounded-xl text-slate-200 hover:text-white bg-surface/80 border border-surface-border transition-colors active:scale-95"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden mt-3 p-4 bg-surface-elevated/95 backdrop-blur-2xl rounded-2xl border border-surface-border flex flex-col gap-2 animate-fade-in shadow-glass">
+          <div className="md:hidden mt-2.5 p-3 bg-surface-elevated/95 backdrop-blur-2xl rounded-2xl border border-surface-border flex flex-col gap-1 animate-fade-in shadow-glass">
             {NAV_LINKS.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="px-3 py-2 rounded-lg text-slate-200 hover:text-emerald-300 hover:bg-surface text-sm font-medium transition-colors"
+                className="px-3 py-2.5 rounded-lg text-slate-200 hover:text-emerald-300 hover:bg-surface text-sm font-medium transition-colors active:bg-emerald-500/10"
               >
                 {link.label}
               </a>

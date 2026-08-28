@@ -63,7 +63,7 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
 
       <div>
         {/* Top Image Preview Banner */}
-        <div className="relative w-full h-48 sm:h-52 overflow-hidden bg-[#080d0a] border-b border-emerald-500/15">
+        <div className="relative w-full h-44 sm:h-52 overflow-hidden bg-[#080d0a] border-b border-emerald-500/15">
           <Image
             src={project.image}
             alt={project.title}
@@ -76,8 +76,8 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
           <div className="absolute inset-0 bg-gradient-to-t from-[#0b100d] via-[#0b100d]/30 to-transparent" />
 
           {/* Floating Badges */}
-          <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between pointer-events-none">
-            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0e1611]/90 backdrop-blur-md border border-emerald-500/25 text-[11px] font-mono text-emerald-300">
+          <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-1 pointer-events-none">
+            <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#0e1611]/90 backdrop-blur-md border border-emerald-500/25 text-[10.5px] sm:text-[11px] font-mono text-emerald-300">
               {project.type === 'Mobile App' && <Smartphone className="w-3 h-3 text-emerald-400" />}
               {project.type === 'Flutter Web' && <Globe className="w-3 h-3 text-cyan-400" />}
               {project.type === 'Full Stack' && <Layers className="w-3 h-3 text-emerald-400" />}
@@ -85,23 +85,23 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
             </span>
 
             {project.statusBadge && (
-              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/90 backdrop-blur-md border border-emerald-500/30 text-[10.5px] font-mono text-emerald-300">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span>{project.statusBadge}</span>
+              <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-950/90 backdrop-blur-md border border-emerald-500/30 text-[10px] sm:text-[10.5px] font-mono text-emerald-300 truncate">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-none" />
+                <span className="truncate">{project.statusBadge}</span>
               </span>
             )}
           </div>
         </div>
 
         {/* Card Body */}
-        <div className="p-5 sm:p-6 space-y-4">
+        <div className="p-4 sm:p-5 lg:p-6 space-y-3.5 sm:space-y-4">
           <div>
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <h3 className="text-lg sm:text-xl font-bold text-slate-100 group-hover:text-emerald-300 transition-colors tracking-tight">
+            <div className="flex items-start justify-between gap-2.5">
+              <div className="min-w-0">
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-slate-100 group-hover:text-emerald-300 transition-colors tracking-tight truncate">
                   {project.title}
                 </h3>
-                <p className="text-xs font-mono text-emerald-400/80 mt-0.5">{project.subtitle}</p>
+                <p className="text-[11px] sm:text-xs font-mono text-emerald-400/90 mt-0.5 truncate">{project.subtitle}</p>
               </div>
 
               {/* Action Link Icons */}
@@ -111,7 +111,7 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-[#0e1611] hover:bg-emerald-950/60 text-slate-300 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors"
+                    className="p-2 min-h-[36px] min-w-[36px] flex items-center justify-center rounded-lg bg-[#0e1611] hover:bg-emerald-950/60 text-slate-300 hover:text-emerald-300 border border-emerald-500/20 hover:border-emerald-500/40 transition-colors active:scale-95"
                     aria-label={`${project.title} GitHub repo`}
                   >
                     <Github className="w-3.5 h-3.5" />
@@ -122,7 +122,7 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
                     href={project.demoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 border border-emerald-500/30 transition-all duration-150"
+                    className="p-2 min-h-[36px] min-w-[36px] flex items-center justify-center rounded-lg bg-emerald-500/15 hover:bg-emerald-500 text-emerald-300 hover:text-slate-950 border border-emerald-500/30 transition-all duration-150 active:scale-95"
                     aria-label={`${project.title} live demo`}
                   >
                     <ExternalLink className="w-3.5 h-3.5" />
@@ -138,11 +138,11 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
 
           {/* Highlights */}
           {project.highlights && project.highlights.length > 0 && (
-            <ul className="space-y-1.5 pt-2 border-t border-emerald-500/10 text-xs text-slate-400 font-sans">
+            <ul className="space-y-1.5 pt-2 border-t border-emerald-500/10 text-xs text-slate-300 font-sans">
               {project.highlights.slice(0, 2).map((h, hIdx) => (
                 <li key={hIdx} className="flex items-start gap-2">
-                  <span className="w-1 h-1 rounded-full bg-emerald-400 mt-1.5 flex-none" />
-                  <span className="line-clamp-1">{h}</span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 flex-none" />
+                  <span className="line-clamp-2 leading-relaxed">{h}</span>
                 </li>
               ))}
             </ul>
@@ -151,7 +151,7 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
       </div>
 
       {/* Card Footer & Deep Dive Trigger */}
-      <div className="p-5 sm:p-6 pt-0 space-y-3">
+      <div className="p-4 sm:p-5 lg:p-6 pt-0 space-y-3">
         {/* Tech Pills */}
         <div className="flex flex-wrap gap-1">
           {project.tech.slice(0, 4).map((t) => (
@@ -174,7 +174,7 @@ export function ProjectCard({ project, index, onSelectProject }: ProjectCardProp
           <button
             type="button"
             onClick={() => onSelectProject(project)}
-            className="w-full flex items-center justify-between px-3.5 py-2 rounded-xl bg-[#0e1611] hover:bg-emerald-950/40 border border-emerald-500/20 hover:border-emerald-500/40 text-xs font-mono text-emerald-300 transition-all duration-150 group/btn"
+            className="w-full min-h-[44px] flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-[#0e1611] hover:bg-emerald-950/40 border border-emerald-500/20 hover:border-emerald-500/40 text-xs font-mono text-emerald-300 transition-all duration-150 active:scale-[0.98] group/btn"
           >
             <span className="flex items-center gap-1.5">
               <Code2 className="w-3.5 h-3.5 text-emerald-400" />
