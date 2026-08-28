@@ -7,13 +7,18 @@ import { gooeyToast } from 'goey-toast';
 export function ContactSection() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    gooeyToast.success('Copied', {
+    gooeyToast.success('Copied to clipboard', {
+      description: text,
       preset: 'bouncy',
     });
   };
 
   return (
-    <section id="contact" className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <section
+      id="contact"
+      aria-labelledby="contact-heading"
+      className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+    >
       <div className="flex flex-col gap-12">
         {/* Header */}
         <div className="flex flex-col gap-2">
@@ -21,7 +26,7 @@ export function ContactSection() {
             <MessageSquare className="w-3.5 h-3.5" />
             <span>Connect &amp; Collaborate</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
+          <h2 id="contact-heading" className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
             Let&apos;s build your next mobile milestone.
           </h2>
           <p className="text-slate-400 text-base max-w-xl">

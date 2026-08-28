@@ -76,7 +76,11 @@ const SKILL_CATEGORIES: SkillCategory[] = [
 
 export function SkillsSection() {
   return (
-    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <section
+      id="skills"
+      aria-labelledby="skills-heading"
+      className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+    >
       <div className="flex flex-col gap-12">
         {/* Header */}
         <div className="flex flex-col gap-2">
@@ -84,7 +88,7 @@ export function SkillsSection() {
             <Layers className="w-3.5 h-3.5" />
             <span>Technical Capabilities</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
+          <h2 id="skills-heading" className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
             Specialized in Flutter, Supabase &amp; Modern Web
           </h2>
           <p className="text-slate-400 text-base max-w-2xl">

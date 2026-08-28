@@ -6,7 +6,11 @@ import { Award, Briefcase, Code2, GraduationCap, MapPin, Sparkles } from 'lucide
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="py-24 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto"
+    >
       <div className="flex flex-col gap-12">
         {/* Section Header */}
         <div className="flex flex-col gap-2">
@@ -14,7 +18,7 @@ export function AboutSection() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>Engineering Background</span>
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
+          <h2 id="about-heading" className="text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight">
             Crafting resilient mobile experiences with clean architecture.
           </h2>
         </div>

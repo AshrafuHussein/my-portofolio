@@ -36,7 +36,7 @@ const PROJECTS_DATA: ProjectData[] = [
     tech: ['Flutter', 'Dart', 'Supabase', 'BLoC/Cubit', 'PostgreSQL', 'GoRouter', 'FCM'],
     type: 'Mobile App',
     category: 'mobile',
-    image: '/img/wakazi app.jpg',
+    image: '/img/sonnoh.png',
     githubUrl: 'https://github.com/AshrafuHussein',
     statusBadge: 'Production App',
     featured: true,
@@ -83,7 +83,7 @@ final channel = supabase.channel('order_lifecycle:\${orderId}')
     tech: ['Flutter', 'Supabase', 'PostGIS', 'BLoC', 'GoRouter', 'QR Engine', 'Edge Functions'],
     type: 'Mobile App',
     category: 'supabase',
-    image: '/img/first aid now.jpg',
+    image: '/img/lets-vent.png',
     demoUrl: 'https://letsvent.online',
     githubUrl: 'https://github.com/AshrafuHussein',
     statusBadge: 'Live · letsvent.online',
@@ -117,10 +117,10 @@ $$;`,
   },
   {
     id: 'site-diary',
-    title: 'Site Diary',
-    subtitle: 'Enterprise Construction Management · Flutter Web',
+    title: 'ProjectHub & Site Diary',
+    subtitle: 'Enterprise Project & Site Management · Flutter Web',
     description:
-      'A production-grade management portal engineered for civil engineering contractors and construction supervisors. Replaces paper logs with standardized daily progress reports, machinery runtime logs, weather records, and multi-tier signoffs.',
+      'A production-grade management portal engineered for civil engineering contractors, construction supervisors, and enterprise project tracking. Features standardized project directory indexing, admin consoles, and multi-tier member access.',
     highlights: [
       'Strict Clean Architecture separating domain entities from Supabase data sources',
       'Dynamic multi-step form validation with automated PDF daily summary exports',
@@ -129,7 +129,7 @@ $$;`,
     tech: ['Flutter Web', 'Dart', 'Clean Architecture', 'BLoC', 'Supabase RLS', 'PDF Gen'],
     type: 'Flutter Web',
     category: 'web',
-    image: '/img/home treatment app.jpg',
+    image: '/img/projecthub.png',
     githubUrl: 'https://github.com/AshrafuHussein',
     statusBadge: 'Enterprise Web Portal',
     featured: false,
@@ -157,10 +157,10 @@ create policy "Engineers can create and sign daily site logs"
   },
   {
     id: 'atc-campus-connect',
-    title: 'ATC Campus Connect',
+    title: 'ATC Events & Campus Connect',
     subtitle: 'Arusha Technical College Portal · Mobile & Cloud',
     description:
-      'Official campus companion application for Arusha Technical College students and faculty. Centralizes departmental advisories, timetable updates, exam timetables, and student service requests with a role-aware moderation console.',
+      'Official campus companion application and administrative portal for Arusha Technical College students and faculty. Centralizes departmental advisories, event management, and secure academic MFA access.',
     highlights: [
       'Targeted push notifications via Firebase Cloud Messaging topic routing',
       'Offline schedule synchronization with local Hive key-value persistence',
@@ -169,7 +169,7 @@ create policy "Engineers can create and sign daily site logs"
     tech: ['Flutter', 'Dart', 'Supabase / Firebase', 'Hive DB', 'BLoC', 'REST API'],
     type: 'Mobile App',
     category: 'mobile',
-    image: '/img/campus jobs.jpg',
+    image: '/img/atc-events.png',
     githubUrl: 'https://github.com/AshrafuHussein',
     statusBadge: 'Campus System',
     featured: false,
@@ -195,7 +195,7 @@ emit(CampusSyncSuccess(localAdvisories));`,
     title: 'Fursafy',
     subtitle: 'Youth Opportunity & Skill Matching · Capstone',
     description:
-      'Final-year capstone engineering project designed to bridge the youth unemployment gap in Tanzania. Uses geohash spatial indexing to match vocational graduates and freelancers with verified local micro-jobs, apprenticeships, and enterprise gigs.',
+      'Final-year capstone engineering mobile platform designed to bridge the youth unemployment gap in Tanzania. Uses geohash spatial indexing to match vocational graduates and freelancers with verified local micro-jobs, delivery logistics gigs, and apprenticeships.',
     highlights: [
       'Proximity-first job matching utilizing geohash spatial bounding boxes',
       'Standardized skill verification & portfolio display for technical trades',
@@ -204,7 +204,7 @@ emit(CampusSyncSuccess(localAdvisories));`,
     tech: ['Flutter', 'Dart', 'Supabase', 'Geohash', 'PostgreSQL', 'BLoC'],
     type: 'Mobile App',
     category: 'supabase',
-    image: '/img/shebele portofolio.jpg',
+    image: '/img/fursafy.png',
     githubUrl: 'https://github.com/AshrafuHussein',
     statusBadge: 'Capstone Engineering',
     featured: false,
@@ -252,6 +252,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
+      aria-labelledby="projects-heading"
       className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden bg-[#080f0b]"
     >
       {/* Supabase Matrix Grid Backdrop */}
@@ -275,7 +276,7 @@ export function ProjectsSection() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Production Systems &amp; Architectures</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-100 tracking-tight">
+            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-100 tracking-tight">
               Crafted with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-green-400">
                 Flutter &amp; Supabase
