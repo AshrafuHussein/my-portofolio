@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, JetBrains_Mono } from 'next/font/google';
+import 'goey-toast/styles.css';
+import '@designcodeio/threeui/style.css';
 import './globals.css';
 import { ToastProvider } from '@/components/ui/ToastProvider';
 import { ThreeDCursor } from '@/components/cursor/ThreeDCursor';

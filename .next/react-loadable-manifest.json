@@ -4,5 +4,11 @@
     "files": [
       "static/chunks/_app-pages-browser_components_hero_ThreeUIBackground_tsx.js"
     ]
+  },
+  "components\\hero\\ThreeUIBackground.tsx -> @designcodeio/threeui/components/FlowField": {
+    "id": "components\\hero\\ThreeUIBackground.tsx -> @designcodeio/threeui/components/FlowField",
+    "files": [
+      "static/chunks/_app-pages-browser_node_modules_designcodeio_threeui_lib-dist_package-components_FlowField_js.js"
+    ]
   }
 }
