@@ -4,7 +4,7 @@ import 'goey-toast/styles.css';
 import '@designcodeio/threeui/style.css';
 import './globals.css';
 import { ToastProvider } from '@/components/ui/ToastProvider';
-import { ThreeDCursor } from '@/components/cursor/ThreeDCursor';
+import { SmoothFollower } from '@/components/cursor/SmoothFollower';
 
 const sansFont = Inter({
   subsets: ['latin'],
@@ -79,8 +79,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${sansFont.variable} ${monoFont.variable} dark scroll-smooth`}>
       <body className="bg-background text-slate-100 selection:bg-brand-500/30 selection:text-brand-100 min-h-screen">
-        {/* Cursify 3D Cursor (desktop non-touch only) */}
-        <ThreeDCursor />
+        {/* Cursify SmoothFollower Cursor */}
+        <SmoothFollower />
 
         {/* gooey-toast provider for promise-based notifications */}
         <ToastProvider />

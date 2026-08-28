@@ -48,7 +48,7 @@ export function AboutSection() {
               </p>
               <p>
                 Starting <span className="text-slate-100 font-semibold">October 2026</span>, I will be
-                joining the <span className="text-blue-300 font-semibold">e-Government Authority (eGA)</span>{' '}
+                joining the <span className="text-emerald-300 font-semibold">e-Government Authority (eGA)</span>{' '}
                 Research and Innovation Centre as a Software/Mobile Development Intern to help build
                 high-impact public sector digital systems.
               </p>

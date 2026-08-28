@@ -5,10 +5,10 @@ import { Copy, Github, Instagram, Mail, MapPin, Phone, MessageSquare, Sparkles }
 import { gooeyToast } from 'goey-toast';
 
 export function ContactSection() {
-  const copyToClipboard = (text: string, label: string) => {
+  const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    gooeyToast.success(`${label} copied!`, {
-      description: text,
+    gooeyToast.success('Copied', {
+      preset: 'bouncy',
     });
   };
 
@@ -46,7 +46,7 @@ export function ContactSection() {
               </div>
               <button
                 type="button"
-                onClick={() => copyToClipboard('ashrafuhussien@gmail.com', 'Email')}
+                onClick={() => copyToClipboard('ashrafuhussien@gmail.com')}
                 className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-surface-elevated border border-transparent hover:border-surface-border transition-colors"
                 aria-label="Copy Email address"
               >
@@ -67,7 +67,7 @@ export function ContactSection() {
               </div>
               <button
                 type="button"
-                onClick={() => copyToClipboard('+255749939527', 'Phone number')}
+                onClick={() => copyToClipboard('+255749939527')}
                 className="p-2 rounded-xl text-slate-400 hover:text-slate-100 hover:bg-surface-elevated border border-transparent hover:border-surface-border transition-colors"
                 aria-label="Copy Phone number"
               >

@@ -24,40 +24,41 @@ export function ContactForm() {
 
     setLoading(true);
 
-    const submitPromise = new Promise<void>(async (resolve, reject) => {
-      try {
-        const response = await fetch('https://formspree.io/f/xwpodzya', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
+    try {
+      const response = await fetch('https://formspree.io/f/xwpodzya', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || 'New message from portfolio',
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        gooeyToast.success('Email sent succesfull', {
+          description:
+            'Your message has been sent and recieved successfully, ill catch up on you soon.',
+          action: {
+            label: 'Ok',
+            onClick: () => {},
           },
-          body: JSON.stringify({
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject || 'New message from portfolio',
-            message: formData.message,
-          }),
+          preset: 'bouncy',
+          showProgress: true,
         });
-
-        if (response.ok) {
-          setFormData({ name: '', email: '', subject: '', message: '' });
-          resolve();
-        } else {
-          reject(new Error('Form submission failed'));
-        }
-      } catch (err) {
-        reject(err);
-      } finally {
-        setLoading(false);
+      } else {
+        gooeyToast.error('Could not send message. Please email ashrafuhussien@gmail.com directly.');
       }
-    });
-
-    gooeyToast.promise(submitPromise, {
-      loading: 'Transmitting message to Ash...',
-      success: 'Message delivered! I will get back to you shortly.',
-      error: 'Could not send message. Please email ashrafuhussien@gmail.com directly.',
-    });
+    } catch (err) {
+      gooeyToast.error('Network error. Please try again or reach out directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

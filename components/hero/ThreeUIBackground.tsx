@@ -1,64 +1,34 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
-import { usePrefersReducedMotion } from '@/hooks/use-reduced-motion';
+import React from 'react';
 import dynamic from 'next/dynamic';
 
-// Dynamically import ThreeUI FlowField from the official @designcodeio/threeui package subpath
-const FlowField = dynamic(
+// Dynamically import SylvaLivingWorldScene from subpath for seamless SSR handling
+const SylvaLivingWorldScene = dynamic(
   () =>
-    import('@designcodeio/threeui/components/FlowField').then((mod) => ({
-      default: mod.FlowField,
+    import('@designcodeio/threeui/components/SylvaLivingWorldScene').then((mod) => ({
+      default: mod.SylvaLivingWorldScene,
     })),
   {
     ssr: false,
-    loading: () => <div className="absolute inset-0 bg-[#070b14]" />,
+    loading: () => <div className="absolute inset-0 bg-[#080f0b]" />,
   }
 );
 
 export function ThreeUIBackground() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [isInView, setIsInView] = useState(true);
-  const prefersReducedMotion = usePrefersReducedMotion();
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el || typeof IntersectionObserver === 'undefined') return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          setIsInView(entry.isIntersecting);
-        });
-      },
-      { threshold: 0.05 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  if (prefersReducedMotion) {
-    return (
-      <div className="absolute inset-0 bg-[#070b14] pointer-events-none z-0" aria-hidden="true" />
-    );
-  }
-
   return (
-    <div
-      ref={containerRef}
-      className="absolute inset-0 overflow-hidden pointer-events-none z-0 opacity-45 mix-blend-screen transition-opacity duration-1000"
-      aria-hidden="true"
-    >
-      {isInView && (
-        <FlowField
-          mode="dark"
-          speed={0.7}
-          density={1.2}
-          opacity={0.8}
-          className="w-full h-full object-cover pointer-events-none"
+    <div className="absolute inset-0 overflow-hidden z-0 pointer-events-auto select-none" aria-hidden="true">
+      {/* Sylva Living World 3D procedural living green canvas with full clarity and visibility */}
+      <div className="absolute inset-0 w-full h-full opacity-90 transition-opacity duration-700">
+        <SylvaLivingWorldScene
+          variant="living-green"
+          className="w-full h-full object-cover"
+          style={{ width: '100%', height: '100%', position: 'absolute', inset: 0 }}
         />
-      )}
+      </div>
+
+      {/* Subtle soft gradient only at the very bottom edge to softly bridge into the rest of the page */}
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/60 to-transparent pointer-events-none" />
     </div>
   );
 }
