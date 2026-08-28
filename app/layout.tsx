@@ -1,10 +1,19 @@
 import type { Metadata, Viewport } from 'next';
+import dynamic from 'next/dynamic';
 import { Inter, JetBrains_Mono } from 'next/font/google';
 import 'goey-toast/styles.css';
 import '@designcodeio/threeui/style.css';
 import './globals.css';
-import { ToastProvider } from '@/components/ui/ToastProvider';
-import { SmoothFollower } from '@/components/cursor/SmoothFollower';
+
+const ToastProvider = dynamic(
+  () => import('@/components/ui/ToastProvider').then((mod) => mod.ToastProvider),
+  { ssr: false }
+);
+
+const SmoothFollower = dynamic(
+  () => import('@/components/cursor/SmoothFollower').then((mod) => mod.SmoothFollower),
+  { ssr: false }
+);
 
 const sansFont = Inter({
   subsets: ['latin'],
@@ -66,7 +75,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#070b14',
+  themeColor: '#080f0b',
   width: 'device-width',
   initialScale: 1,
 };

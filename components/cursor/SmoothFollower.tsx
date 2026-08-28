@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 
 export function SmoothFollower() {
+  const [mounted, setMounted] = useState(false);
   const mousePosition = useRef({ x: -100, y: -100 });
   const dotPosition = useRef({ x: -100, y: -100 });
   const borderDotPosition = useRef({ x: -100, y: -100 });
@@ -16,6 +17,8 @@ export function SmoothFollower() {
   const BORDER_DOT_SMOOTHNESS = 0.1;
 
   useEffect(() => {
+    setMounted(true);
+
     const handleMouseMove = (e: MouseEvent) => {
       mousePosition.current = { x: e.clientX, y: e.clientY };
       setIsVisible(true);
@@ -33,7 +36,7 @@ export function SmoothFollower() {
       element.addEventListener("mouseleave", handleMouseLeave);
     });
 
-    // Animation function for smooth movement
+    // Animation loop for smooth interpolation
     let animationId: number;
     const animate = () => {
       const lerp = (start: number, end: number, factor: number) => {
@@ -58,10 +61,8 @@ export function SmoothFollower() {
       animationId = requestAnimationFrame(animate);
     };
 
-    // Start animation loop
     animationId = requestAnimationFrame(animate);
 
-    // Clean up
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
       interactiveElements.forEach((element) => {
@@ -72,7 +73,7 @@ export function SmoothFollower() {
     };
   }, []);
 
-  if (typeof window === "undefined") return null;
+  if (!mounted) return null;
 
   return (
     <div className="pointer-events-none fixed inset-0 z-[9999] hidden md:block">

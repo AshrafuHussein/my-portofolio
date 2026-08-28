@@ -52,10 +52,10 @@ export function HeroSection() {
       <ThreeUIBackground />
 
       {/* Main Split Hero Structure (Folioblox-inspired Layout with Living Green Aesthetic) */}
-      <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center py-6 sm:py-12">
+      <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col justify-center py-6 sm:py-12 pointer-events-none">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-6 items-center">
           {/* Left Column: Big Bold Title (Folioblox Left Structure) */}
-          <div className="lg:col-span-6 flex flex-col items-start text-left">
+          <div className="lg:col-span-6 flex flex-col items-start text-left pointer-events-auto">
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
@@ -115,7 +115,7 @@ export function HeroSection() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-2 hidden lg:flex justify-center items-center"
+            className="lg:col-span-2 hidden lg:flex justify-center items-center pointer-events-auto"
           >
             <div className="relative w-44 h-56 rounded-3xl overflow-hidden border border-emerald-500/25 shadow-2xl group bg-surface/40 backdrop-blur-sm">
               <Image
@@ -134,7 +134,7 @@ export function HeroSection() {
           </motion.div>
 
           {/* Right Column: Statement Quote & Description (Folioblox Right Structure) */}
-          <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right">
+          <div className="lg:col-span-4 flex flex-col items-start lg:items-end text-left lg:text-right pointer-events-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -192,7 +192,7 @@ export function HeroSection() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-7xl mx-auto w-full pt-8 border-t border-emerald-500/20"
+        className="relative z-10 max-w-7xl mx-auto w-full pt-8 border-t border-emerald-500/20 pointer-events-auto"
       >
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
           {HIGHLIGHT_COLUMNS.map((item) => (
