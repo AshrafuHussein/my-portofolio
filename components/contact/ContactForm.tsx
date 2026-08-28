@@ -25,7 +25,13 @@ export function ContactForm() {
     setLoading(true);
 
     try {
-      const response = await fetch('https://formspree.io/f/xwpodzya', {
+      const formspreeId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
+      if (!formspreeId) {
+        gooeyToast.error('Contact form is not configured. Please try again later.');
+        return;
+      }
+
+      const response = await fetch(`https://formspree.io/f/${formspreeId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

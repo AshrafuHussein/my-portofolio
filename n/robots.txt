@@ -1,3 +1,0 @@
-User-agent: *
-Allow: /
-Sitemap: https://ashrafuhussein-7219b.web.app/sitemap.xml
