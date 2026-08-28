@@ -1,14 +1,16 @@
 {
   "components\\hero\\HeroSection.tsx -> ./ThreeUIBackground": {
-    "id": "components\\hero\\HeroSection.tsx -> ./ThreeUIBackground",
+    "id": 9842,
     "files": [
-      "static/chunks/_app-pages-browser_components_hero_ThreeUIBackground_tsx.js"
+      "static/chunks/842.37e9c8ca6ba04a89.js"
     ]
   },
   "components\\hero\\ThreeUIBackground.tsx -> @designcodeio/threeui/components/SylvaLivingWorldScene": {
-    "id": "components\\hero\\ThreeUIBackground.tsx -> @designcodeio/threeui/components/SylvaLivingWorldScene",
+    "id": 8525,
     "files": [
-      "static/chunks/_app-pages-browser_node_modules_designcodeio_threeui_lib-dist_package-components_SylvaLivingW-a395df.js"
+      "static/chunks/e2cb5dd6.9e8fba939632bb2f.js",
+      "static/chunks/23562d9a.0711dca744f60bd7.js",
+      "static/chunks/525.8b7fe78232605836.js"
     ]
   }
 }
