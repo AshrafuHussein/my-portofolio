@@ -42,13 +42,15 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-5 transition-all duration-300 pointer-events-auto">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 lg:px-12 pt-5 transition-all duration-500 ${
+        scrolled
+          ? 'opacity-100 translate-y-0 pointer-events-auto'
+          : 'opacity-0 -translate-y-4 pointer-events-none'
+      }`}
+    >
       <div
-        className={`max-w-7xl mx-auto rounded-full transition-all duration-300 ${
-          scrolled
-            ? 'bg-surface/85 backdrop-blur-xl border border-surface-border/80 shadow-glass py-2.5 px-6'
-            : 'bg-surface/30 backdrop-blur-sm border border-emerald-500/10 py-3 px-4 sm:px-6'
-        }`}
+        className="max-w-7xl mx-auto rounded-full transition-all duration-300 bg-surface/90 backdrop-blur-xl border border-surface-border/80 shadow-glass py-2.5 px-6"
       >
         <div className="flex items-center justify-between">
           {/* Brand Wordmark (Folioblox structure with green accent) */}
