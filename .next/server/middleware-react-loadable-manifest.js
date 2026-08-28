@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST='{"components\\\\hero\\\\HeroSection.tsx -> ./ThreeUIBackground":{"id":9842,"files":["static/chunks/842.37e9c8ca6ba04a89.js"]},"components\\\\hero\\\\ThreeUIBackground.tsx -> @designcodeio/threeui/components/SylvaLivingWorldScene":{"id":8525,"files":["static/chunks/e2cb5dd6.9e8fba939632bb2f.js","static/chunks/23562d9a.0711dca744f60bd7.js","static/chunks/525.8b7fe78232605836.js"]}}';
+self.__REACT_LOADABLE_MANIFEST="{}"
