@@ -34,25 +34,20 @@
    - **Summary**: Swipe-driven social event discovery connecting urban attendees with music, tech, and cultural gatherings using PostGIS radius indexing and cryptographic QR passes.
    - **Stack**: Flutter, Supabase, PostGIS ST_DWithin, BLoC, GoRouter, HMAC-SHA256 QR Engine, Supabase Edge Functions.
 
-3. **Campus Jobs**
-   - **Type**: Student Marketplace & Gig Economy App
-   - **Summary**: Hyperlocal freelance job portal matching university students with campus gigs, peer tutoring, and skill-based freelance opportunities.
-   - **Stack**: Flutter, Supabase Auth, PostgreSQL RLS, Cubit, Realtime Messaging.
+3. **ProjectHub & Site Diary**
+   - **Type**: Enterprise Project & Construction Management · Flutter Web
+   - **Summary**: Production-grade management portal engineered for civil engineering contractors and enterprise teams. Standardized project indexing, daily logs, and multi-tier member permissions.
+   - **Stack**: Flutter Web, Dart, Clean Architecture, BLoC, Supabase RLS, PDF Generation.
 
-4. **Home Treatment App**
-   - **Type**: Telehealth & Clinical Symptom Checker
-   - **Summary**: Offline-first medical triage mobile app providing verified first-aid workflows, clinical triage decision trees, and emergency contact dispatch.
-   - **Stack**: Flutter, Hive Offline DB, SQLite, Clean Architecture, BLoC.
+4. **ATC Events & Campus Connect**
+   - **Type**: Arusha Technical College Portal · Mobile & Cloud
+   - **Summary**: Official campus companion application and administrative portal for Arusha Technical College students and faculty. Departmental advisories, event management, and secure academic MFA access.
+   - **Stack**: Flutter, Dart, Supabase / Firebase, Hive DB, BLoC, REST APIs.
 
-5. **First Aid Now**
-   - **Type**: Emergency Health Companion
-   - **Summary**: Rapid emergency guide with step-by-step CPR visual timers, offline emergency protocols, and GPS dispatch coords.
-   - **Stack**: Flutter, Dart, Offline Cache, Sensors API.
-
-6. **Shebele Portfolio & Web Companions**
-   - **Type**: High-Performance Web & Agency Platforms
-   - **Summary**: Responsive client web experiences engineered with modern design systems and interactive motion.
-   - **Stack**: Next.js, React, Tailwind CSS, TypeScript.
+5. **Fursafy**
+   - **Type**: Youth Opportunity & Micro-Gig Platform (Capstone)
+   - **Summary**: Engineering mobile platform matching vocational graduates and freelancers in Tanzania with verified local micro-jobs, delivery logistics gigs, and apprenticeships using geohash spatial indexing.
+   - **Stack**: Flutter, Dart, Supabase, Geohash Spatial Indexing, PostgreSQL, BLoC.
 
 ## Career Timeline & Milestones
 - **2026 (Oct)**: Software/Mobile Development Intern — e-Government Authority (eGA) Tanzania Research & Innovation Centre.

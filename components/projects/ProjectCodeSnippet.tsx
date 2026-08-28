@@ -23,7 +23,10 @@ export function ProjectCodeSnippet({
     try {
       await navigator.clipboard.writeText(code);
       setCopied(true);
-      gooeyToast.success('Copied to clipboard', {
+      const firstLine = code.trim().split('\n')[0];
+      const preview = firstLine.length > 50 ? firstLine.substring(0, 50) + '...' : firstLine;
+      gooeyToast.success('Copied snippet to clipboard', {
+        description: preview,
         preset: 'bouncy',
       });
       setTimeout(() => setCopied(false), 2000);

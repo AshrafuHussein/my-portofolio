@@ -7,7 +7,8 @@ import { gooeyToast } from 'goey-toast';
 export function ContactSection() {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text);
-    gooeyToast.success('Copied', {
+    gooeyToast.success('Copied to clipboard', {
+      description: text,
       preset: 'bouncy',
     });
   };
