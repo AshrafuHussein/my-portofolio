@@ -64,6 +64,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
+      aria-label="Contact and project inquiry form"
       className="bg-surface/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-surface-border flex flex-col gap-4 shadow-glass"
     >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -77,6 +78,7 @@ export function ContactForm() {
             name="name"
             type="text"
             required
+            aria-required="true"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="John Doe"
@@ -94,6 +96,7 @@ export function ContactForm() {
             name="email"
             type="email"
             required
+            aria-required="true"
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             placeholder="john@example.com"
@@ -127,6 +130,7 @@ export function ContactForm() {
           id="message"
           name="message"
           required
+          aria-required="true"
           rows={5}
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -139,6 +143,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={loading}
+        aria-label={loading ? 'Sending message...' : 'Send message'}
         className="mt-2 w-full inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold bg-brand-600 hover:bg-brand-500 active:scale-[0.99] text-white shadow-glow transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {loading ? (

@@ -252,6 +252,7 @@ export function ProjectsSection() {
   return (
     <section
       id="projects"
+      aria-labelledby="projects-heading"
       className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden bg-[#080f0b]"
     >
       {/* Supabase Matrix Grid Backdrop */}
@@ -275,7 +276,7 @@ export function ProjectsSection() {
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
               <span>Production Systems &amp; Architectures</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-100 tracking-tight">
+            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-100 tracking-tight">
               Crafted with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-green-400">
                 Flutter &amp; Supabase

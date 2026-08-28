@@ -73,8 +73,13 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       id="home"
+      aria-label="Hero Introduction"
       className="relative w-full h-screen min-h-[700px] overflow-hidden bg-[#080f0b]"
     >
+      {/* Semantic H1 for Search Engine & AI Agent indexing */}
+      <h1 className="sr-only">
+        Ashrafu Hussein — Flutter &amp; Supabase Software Engineer Portfolio
+      </h1>
       {mounted ? (
         <iframe
           ref={iframeRef}
