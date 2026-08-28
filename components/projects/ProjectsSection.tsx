@@ -253,36 +253,36 @@ export function ProjectsSection() {
     <section
       id="projects"
       aria-labelledby="projects-heading"
-      className="relative py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden bg-[#080f0b]"
+      className="relative w-full py-16 sm:py-24 lg:py-28 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden bg-[#080f0b]"
     >
       {/* Supabase Matrix Grid Backdrop */}
       <div
-        className="absolute inset-0 pointer-events-none opacity-40"
+        className="absolute inset-0 pointer-events-none opacity-30"
         style={{
           backgroundImage: `
             linear-gradient(to right, rgba(16, 185, 129, 0.06) 1px, transparent 1px),
             linear-gradient(to bottom, rgba(16, 185, 129, 0.06) 1px, transparent 1px)
           `,
-          backgroundSize: '40px 40px',
+          backgroundSize: '32px 32px',
         }}
       />
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[600px] h-[300px] bg-emerald-500/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="relative z-10 space-y-12">
+      <div className="relative z-10 w-full min-w-0 space-y-10 sm:space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-emerald-500/15">
-          <div className="space-y-3">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-xs font-mono text-emerald-400">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span>Production Systems &amp; Architectures</span>
+        <div className="w-full min-w-0 flex flex-col md:flex-row md:items-end justify-between gap-5 pb-6 border-b border-emerald-500/15">
+          <div className="w-full min-w-0 space-y-2.5">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-[11px] sm:text-xs font-mono text-emerald-400 max-w-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse flex-none" />
+              <span className="truncate">Production Systems &amp; Architectures</span>
             </div>
-            <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-100 tracking-tight">
+            <h2 id="projects-heading" className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-slate-100 tracking-tight break-words">
               Crafted with{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-green-400">
                 Flutter &amp; Supabase
               </span>
             </h2>
-            <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-base text-slate-300 max-w-2xl leading-relaxed break-words">
               Engineered for reactive state performance, spatial PostGIS queries, offline-first sync,
               and rock-solid Row-Level Security in production.
             </p>
@@ -292,7 +292,7 @@ export function ProjectsSection() {
             href="https://github.com/AshrafuHussein"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1611] hover:bg-emerald-950/40 text-emerald-300 hover:text-emerald-200 border border-emerald-500/20 text-xs font-mono transition-all self-start md:self-auto active:scale-95"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1611] hover:bg-emerald-950/40 text-emerald-300 hover:text-emerald-200 border border-emerald-500/20 text-xs font-mono transition-all self-start md:self-auto active:scale-95 flex-none"
           >
             <span>Browse GitHub Repos</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -300,52 +300,52 @@ export function ProjectsSection() {
         </div>
 
         {/* Hero Spotlight Showcase (Supabase Signature Feature Spotlight) */}
-        <div className="relative rounded-3xl bg-[#0b100d] border border-emerald-500/25 overflow-hidden shadow-2xl p-6 sm:p-8 lg:p-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div className="relative w-full min-w-0 rounded-2xl sm:rounded-3xl bg-[#0b100d] border border-emerald-500/25 overflow-hidden shadow-2xl p-4 sm:p-6 lg:p-8">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
             {/* Left Col: Case Study Narrative */}
-            <div className="lg:col-span-6 space-y-6">
+            <div className="lg:col-span-6 w-full min-w-0 space-y-4 sm:space-y-5">
               <div className="flex items-center gap-2">
-                <span className="px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                <span className="px-2.5 py-1 rounded-md bg-emerald-500/15 border border-emerald-500/30 text-[10.5px] sm:text-[11px] font-mono text-emerald-300">
                   Featured Case Study
                 </span>
                 <span className="text-slate-500 text-xs font-mono">01 / 05</span>
               </div>
 
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+              <div className="min-w-0">
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-white tracking-tight break-words">
                   {spotlightProject.title}
                 </h3>
-                <p className="text-xs sm:text-sm font-mono text-emerald-400 mt-1">
+                <p className="text-xs sm:text-sm font-mono text-emerald-400 mt-1 break-words">
                   {spotlightProject.subtitle}
                 </p>
               </div>
 
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed break-words">
                 {spotlightProject.description}
               </p>
 
-              {/* Telemetry Grid */}
-              <div className="grid grid-cols-2 gap-2 text-xs font-mono">
+              {/* Telemetry Grid: 1 col on mobile (<sm), 2 cols on sm+ */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full min-w-0 font-mono">
                 {spotlightProject.telemetry?.map((t, idx) => (
                   <div
                     key={idx}
-                    className="p-2.5 rounded-lg bg-[#0e1611] border border-emerald-500/15 flex flex-col gap-0.5"
+                    className="p-2.5 rounded-lg bg-[#0e1611] border border-emerald-500/15 flex items-center sm:flex-col sm:items-start justify-between gap-1 min-w-0 overflow-hidden"
                   >
-                    <span className="text-slate-400 text-[10px] uppercase">{t.label}</span>
-                    <span className="text-emerald-300 font-semibold truncate">{t.value}</span>
+                    <span className="text-slate-400 text-[10px] uppercase truncate">{t.label}</span>
+                    <span className="text-emerald-300 font-semibold text-xs truncate text-right sm:text-left">{t.value}</span>
                   </div>
                 ))}
               </div>
 
-              {/* Spotlight Actions */}
-              <div className="flex flex-wrap items-center gap-3 pt-2">
+              {/* Spotlight Actions: Stack vertically on mobile */}
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 pt-1 w-full">
                 <button
                   type="button"
                   onClick={() => setSelectedProject(spotlightProject)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs transition-all shadow-glow active:scale-95"
+                  className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs transition-all shadow-glow active:scale-[0.98]"
                 >
-                  <Code2 className="w-3.5 h-3.5" />
-                  <span>Inspect Full Architecture</span>
+                  <Code2 className="w-4 h-4 flex-none" />
+                  <span className="truncate">Inspect Full Architecture</span>
                 </button>
 
                 {spotlightProject.githubUrl && (
@@ -353,9 +353,9 @@ export function ProjectsSection() {
                     href={spotlightProject.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1611] hover:bg-emerald-900/30 text-slate-300 hover:text-white border border-emerald-500/20 text-xs font-medium transition-colors"
+                    className="w-full sm:w-auto min-h-[44px] inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#0e1611] hover:bg-emerald-900/30 text-slate-300 hover:text-white border border-emerald-500/20 text-xs font-medium transition-colors active:scale-[0.98]"
                   >
-                    <Github className="w-3.5 h-3.5" />
+                    <Github className="w-4 h-4 flex-none" />
                     <span>Source Code</span>
                   </a>
                 )}
@@ -363,9 +363,9 @@ export function ProjectsSection() {
             </div>
 
             {/* Right Col: Interactive Visual / Code Switcher */}
-            <div className="lg:col-span-6 space-y-3">
+            <div className="lg:col-span-6 w-full min-w-0 space-y-3 pt-2 lg:pt-0">
               {/* Tabs Switcher */}
-              <div className="flex items-center justify-between p-1 rounded-xl bg-[#0e1611] border border-emerald-500/15">
+              <div className="flex items-center justify-between p-1 rounded-xl bg-[#0e1611] border border-emerald-500/15 w-full">
                 <div className="flex items-center gap-1">
                   <button
                     type="button"
@@ -387,7 +387,7 @@ export function ProjectsSection() {
                         : 'text-slate-400 hover:text-slate-200'
                     }`}
                   >
-                    BLoC Realtime Code
+                    BLoC Code
                   </button>
                 </div>
                 <span className="text-[10px] font-mono text-emerald-400/80 pr-2 hidden sm:inline-block">
@@ -397,7 +397,7 @@ export function ProjectsSection() {
 
               {/* Tab Content */}
               {spotlightTab === 'preview' ? (
-                <div className="relative h-64 sm:h-80 rounded-2xl overflow-hidden border border-emerald-500/20 bg-[#080d0a] shadow-inner group">
+                <div className="relative w-full h-48 sm:h-64 lg:h-80 rounded-xl sm:rounded-2xl overflow-hidden border border-emerald-500/20 bg-[#080d0a] shadow-inner group">
                   <Image
                     src={spotlightProject.image}
                     alt={spotlightProject.title}
@@ -406,63 +406,67 @@ export function ProjectsSection() {
                     sizes="(max-width: 1024px) 100vw, 600px"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b100d] via-transparent to-transparent" />
-                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between pointer-events-none">
-                    <span className="px-2.5 py-1 rounded-lg bg-[#0e1611]/90 backdrop-blur-md border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
-                      Multi-Vendor Store &amp; Reels Feed
+                  <div className="absolute bottom-2.5 left-2.5 right-2.5 flex items-center justify-between gap-1 pointer-events-none">
+                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-[#0e1611]/90 backdrop-blur-md border border-emerald-500/30 text-[10px] sm:text-[11px] font-mono text-emerald-300 truncate">
+                      Multi-Vendor Store &amp; Reels
                     </span>
-                    <span className="px-2.5 py-1 rounded-lg bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 text-[11px] font-mono text-emerald-300">
+                    <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 text-[10px] sm:text-[11px] font-mono text-emerald-300 flex-none">
                       Flutter + Supabase
                     </span>
                   </div>
                 </div>
               ) : (
-                <ProjectCodeSnippet
-                  code={spotlightProject.codeSnippet!.code}
-                  language={spotlightProject.codeSnippet!.language}
-                  filename={spotlightProject.codeSnippet!.filename}
-                  title={spotlightProject.codeSnippet!.title}
-                />
+                <div className="w-full min-w-0 overflow-hidden">
+                  <ProjectCodeSnippet
+                    code={spotlightProject.codeSnippet!.code}
+                    language={spotlightProject.codeSnippet!.language}
+                    filename={spotlightProject.codeSnippet!.filename}
+                    title={spotlightProject.codeSnippet!.title}
+                  />
+                </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Category Filter Bar (Supabase Segmented Control) */}
-        <div className="flex flex-wrap items-center justify-between gap-4 pt-4">
-          <div className="inline-flex items-center gap-1.5 p-1 rounded-2xl bg-[#0b100d] border border-emerald-500/20">
-            {FILTER_TABS.map((tab) => {
-              const Icon = tab.icon;
-              const isActive = activeCategory === tab.id;
-              return (
-                <button
-                  key={tab.id}
-                  type="button"
-                  onClick={() => setActiveCategory(tab.id)}
-                  className={`relative inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-mono transition-colors ${
-                    isActive ? 'text-emerald-300 font-semibold' : 'text-slate-400 hover:text-slate-200'
-                  }`}
-                >
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeCategory"
-                      className="absolute inset-0 rounded-xl bg-emerald-500/15 border border-emerald-500/35"
-                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                  <Icon className="w-3.5 h-3.5 relative z-10" />
-                  <span className="relative z-10">{tab.label}</span>
-                </button>
-              );
-            })}
+        {/* Category Filter Bar (Responsive Horizontal Swipe for Mobile) */}
+        <div className="w-full min-w-0 flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2">
+          <div className="w-full sm:w-auto overflow-x-auto no-scrollbar py-1">
+            <div className="flex items-center gap-1.5 p-1 rounded-2xl bg-[#0b100d] border border-emerald-500/20 w-max">
+              {FILTER_TABS.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = activeCategory === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    type="button"
+                    onClick={() => setActiveCategory(tab.id)}
+                    className={`relative inline-flex items-center gap-2 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl text-xs font-mono transition-colors whitespace-nowrap ${
+                      isActive ? 'text-emerald-300 font-semibold' : 'text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    {isActive && (
+                      <motion.span
+                        layoutId="activeCategory"
+                        className="absolute inset-0 rounded-xl bg-emerald-500/15 border border-emerald-500/35"
+                        transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                      />
+                    )}
+                    <Icon className="w-3.5 h-3.5 relative z-10 flex-none" />
+                    <span className="relative z-10">{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <span className="text-xs font-mono text-slate-400">
+          <span className="text-xs font-mono text-slate-400 pl-1 sm:pl-0 flex-none">
             Showing <strong className="text-emerald-400">{filteredProjects.length}</strong> production systems
           </span>
         </div>
 
         {/* Bento Grid Projects Layout */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 w-full min-w-0">
           <AnimatePresence>
             {filteredProjects.map((project, idx) => (
               <ProjectCard

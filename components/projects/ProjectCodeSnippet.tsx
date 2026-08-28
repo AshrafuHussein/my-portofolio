@@ -38,21 +38,21 @@ export function ProjectCodeSnippet({
   const lines = code.trim().split('\n');
 
   return (
-    <div className="rounded-xl overflow-hidden border border-emerald-500/20 bg-[#090d0b] text-xs font-mono shadow-2xl">
+    <div className="rounded-xl overflow-hidden border border-emerald-500/20 bg-[#090d0b] text-[11px] sm:text-xs font-mono shadow-2xl">
       {/* Header bar */}
-      <div className="flex items-center justify-between px-3.5 py-2.5 bg-[#0e1410] border-b border-emerald-500/15">
-        <div className="flex items-center gap-2">
-          <div className="flex items-center gap-1.5 mr-1">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/30 border border-emerald-500/40" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/20 border border-emerald-500/30" />
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/15 border border-emerald-500/20" />
+      <div className="flex items-center justify-between px-3 py-2 sm:px-3.5 sm:py-2.5 bg-[#0e1410] border-b border-emerald-500/15">
+        <div className="flex items-center gap-1.5 sm:gap-2 min-w-0 pr-2">
+          <div className="flex items-center gap-1 mr-1 flex-none">
+            <span className="w-2 h-2 rounded-full bg-emerald-500/30 border border-emerald-500/40" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500/20 border border-emerald-500/30" />
+            <span className="w-2 h-2 rounded-full bg-emerald-500/15 border border-emerald-500/20" />
           </div>
-          <Terminal className="w-3.5 h-3.5 text-emerald-400" />
-          <span className="text-slate-300 font-medium text-[11px]">
+          <Terminal className="w-3.5 h-3.5 text-emerald-400 flex-none" />
+          <span className="text-slate-300 font-medium text-[10.5px] sm:text-[11px] truncate">
             {filename || (language === 'dart' ? 'bloc_handler.dart' : 'schema_rls.sql')}
           </span>
           {title && (
-            <span className="text-slate-500 text-[10px] hidden sm:inline-block">
+            <span className="text-slate-500 text-[10px] hidden sm:inline-block truncate">
               · {title}
             </span>
           )}
@@ -61,7 +61,7 @@ export function ProjectCodeSnippet({
         <button
           type="button"
           onClick={handleCopy}
-          className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/25 text-[11px] text-emerald-300 hover:text-emerald-200 transition-all duration-150 active:scale-95"
+          className="inline-flex items-center gap-1.5 px-2.5 py-1 min-h-[30px] rounded-md bg-emerald-950/40 hover:bg-emerald-900/50 border border-emerald-500/25 text-[10.5px] sm:text-[11px] text-emerald-300 hover:text-emerald-200 transition-all duration-150 active:scale-95 flex-none"
           title="Copy snippet to clipboard"
           aria-label="Copy snippet"
         >
@@ -80,15 +80,15 @@ export function ProjectCodeSnippet({
       </div>
 
       {/* Code Area */}
-      <div className="p-3.5 overflow-x-auto max-h-64 sm:max-h-72 select-text scrollbar-thin scrollbar-thumb-emerald-900/40">
+      <div className="p-2.5 sm:p-3.5 overflow-x-auto max-h-56 sm:max-h-72 select-text scrollbar-thin scrollbar-thumb-emerald-900/40">
         <table className="border-collapse w-full">
           <tbody>
             {lines.map((line, idx) => (
               <tr key={idx} className="hover:bg-emerald-500/5 transition-colors">
-                <td className="pr-4 select-none text-slate-600 text-right w-6 text-[10px] align-top">
+                <td className="pr-3 sm:pr-4 select-none text-slate-600 text-right w-5 sm:w-6 text-[9.5px] sm:text-[10px] align-top">
                   {idx + 1}
                 </td>
-                <td className="text-slate-200 whitespace-pre font-mono leading-relaxed">
+                <td className="text-slate-200 whitespace-pre font-mono leading-relaxed text-[11px] sm:text-xs">
                   {formatSyntax(line, language)}
                 </td>
               </tr>
