@@ -1,0 +1,63 @@
+'use client';
+
+import { type RefObject, useLayoutEffect, useRef, useState, useEffect } from 'react';
+
+export interface MouseState {
+  x: number | null;
+  y: number | null;
+  elementX: number | null;
+  elementY: number | null;
+  elementPositionX: number | null;
+  elementPositionY: number | null;
+}
+
+export function useMouse(): [MouseState, RefObject<HTMLDivElement>] {
+  const [state, setState] = useState<MouseState>({
+    x: null,
+    y: null,
+    elementX: null,
+    elementY: null,
+    elementPositionX: null,
+    elementPositionY: null,
+  });
+
+  const ref = useRef<HTMLDivElement | null>(null);
+
+  // Use useEffect to be safe for SSR / hydration
+  const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+
+  useIsomorphicLayoutEffect(() => {
+    const handleMouseMove = (event: MouseEvent) => {
+      const newState: Partial<MouseState> = {
+        x: event.clientX,
+        y: event.clientY,
+      };
+
+      if (ref.current instanceof Element) {
+        const { left, top } = ref.current.getBoundingClientRect();
+        const elementPositionX = left + window.scrollX;
+        const elementPositionY = top + window.scrollY;
+        const elementX = event.pageX - elementPositionX;
+        const elementY = event.pageY - elementPositionY;
+
+        newState.elementX = elementX;
+        newState.elementY = elementY;
+        newState.elementPositionX = elementPositionX;
+        newState.elementPositionY = elementPositionY;
+      }
+
+      setState((s) => ({
+        ...s,
+        ...newState,
+      }));
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  return [state, ref];
+}
