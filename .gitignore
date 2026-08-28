@@ -7,6 +7,14 @@ yarn-error.log*
 firebase-debug.log*
 firebase-debug.*.log*
 
+# Next.js build & static export
+.next/
+out/
+build/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+
 # Firebase cache
 .firebase/
 
