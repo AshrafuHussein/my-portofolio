@@ -1,0 +1,67 @@
+# Ashrafu Hussein — Portfolio & Engineering Dossier
+
+> Production Flutter/Dart Mobile Application Architect & Supabase Cloud Engineer based in Tanzania. Incoming Software/Mobile Development Intern at e-Government Authority (eGA) Research and Innovation Centre (October 2026).
+
+## Developer Profile
+- **Name**: Ashrafu Hussein
+- **Primary Roles**: Flutter Mobile Engineer, Supabase Cloud Specialist, Full-Stack Companion Engineer
+- **Location**: Dar es Salaam & Arusha, Tanzania (GMT+3)
+- **Education**: Computer Science Diploma (Class of 2026), Arusha Technical College (ATC)
+- **Upcoming Milestone**: Software/Mobile Development Intern at e-Government Authority (eGA) Tanzania (Oct 2026)
+- **Email**: ashrafuhussien@gmail.com
+- **Phone / WhatsApp**: +255 749 939 527
+- **GitHub**: https://github.com/AshrafuHussein
+- **Instagram**: https://www.instagram.com/ash_tek255/
+- **Live Portfolio**: https://ashrafuhussein-7219b.web.app
+
+## Core Engineering Capabilities & Architecture
+- **Mobile Architecture**: Flutter, Dart, BLoC / Cubit State Pattern, GoRouter deep linking, Clean Architecture (Domain/Data/UI layers), Hive offline caching, Custom Painters.
+- **Backend & Database**: Supabase (PostgreSQL, Realtime WebSockets, Row Level Security, Auth, Storage), PostGIS (ST_DWithin geospatial radius indexing), Edge Functions (Deno/TypeScript), REST & GraphQL.
+- **Web & Companion Systems**: Next.js 14 App Router, React 18, TypeScript, Tailwind CSS, Framer Motion, Three.js / WebGL.
+- **DevOps & Workflow**: Git/GitHub, Android Studio, VS Code, Postman, Vercel, Firebase Hosting, Figma to Flutter token translation.
+
+## Featured Production & Open-Source Projects
+
+1. **SONNOH**
+   - **Type**: Production Cross-Platform Mobile Application
+   - **Summary**: Social-commerce ecosystem combining interactive video reels feed with an integrated multi-vendor store, instant checkout, and real-time messaging.
+   - **Stack**: Flutter, Dart, Supabase, BLoC/Cubit, PostgreSQL, GoRouter, FCM.
+   - **Highlights**: Dynamic reel caching, Supabase Realtime order status broadcasts, PostgreSQL normalized schema.
+
+2. **Let's Vent**
+   - **Type**: Mobile Event Discovery & Geospatial Platform
+   - **Live Web App**: https://letsvent.online
+   - **Summary**: Swipe-driven social event discovery connecting urban attendees with music, tech, and cultural gatherings using PostGIS radius indexing and cryptographic QR passes.
+   - **Stack**: Flutter, Supabase, PostGIS ST_DWithin, BLoC, GoRouter, HMAC-SHA256 QR Engine, Supabase Edge Functions.
+
+3. **Campus Jobs**
+   - **Type**: Student Marketplace & Gig Economy App
+   - **Summary**: Hyperlocal freelance job portal matching university students with campus gigs, peer tutoring, and skill-based freelance opportunities.
+   - **Stack**: Flutter, Supabase Auth, PostgreSQL RLS, Cubit, Realtime Messaging.
+
+4. **Home Treatment App**
+   - **Type**: Telehealth & Clinical Symptom Checker
+   - **Summary**: Offline-first medical triage mobile app providing verified first-aid workflows, clinical triage decision trees, and emergency contact dispatch.
+   - **Stack**: Flutter, Hive Offline DB, SQLite, Clean Architecture, BLoC.
+
+5. **First Aid Now**
+   - **Type**: Emergency Health Companion
+   - **Summary**: Rapid emergency guide with step-by-step CPR visual timers, offline emergency protocols, and GPS dispatch coords.
+   - **Stack**: Flutter, Dart, Offline Cache, Sensors API.
+
+6. **Shebele Portfolio & Web Companions**
+   - **Type**: High-Performance Web & Agency Platforms
+   - **Summary**: Responsive client web experiences engineered with modern design systems and interactive motion.
+   - **Stack**: Next.js, React, Tailwind CSS, TypeScript.
+
+## Career Timeline & Milestones
+- **2026 (Oct)**: Software/Mobile Development Intern — e-Government Authority (eGA) Tanzania Research & Innovation Centre.
+- **2024 – Present**: Freelance Flutter & Supabase Mobile Engineer.
+- **2023 – 2026**: Computer Science Diploma Candidate — Arusha Technical College (ATC).
+- **2023**: Mobile App Development Foundation & Dart Specialization.
+
+## Contact & Inquiries
+For freelance mobile engineering, Supabase database design, or technical roles:
+- **Email**: ashrafuhussien@gmail.com
+- **Direct**: +255 749 939 527
+- **Inquiry Form**: https://ashrafuhussein-7219b.web.app/#contact
