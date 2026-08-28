@@ -1,6 +1,7 @@
 {
   "hosting": {
-    "public": "n",
+    "public": "out",
+    "cleanUrls": true,
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -15,12 +16,39 @@
             "value": "application/xml"
           }
         ]
+      },
+      {
+        "source": "/robots.txt",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/plain"
+          }
+        ]
+      },
+      {
+        "source": "/_next/static/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(jpg|jpeg|gif|png|webp|svg|ico|woff2|woff)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, immutable"
+          }
+        ]
       }
     ],
     "rewrites": [
       {
-        "source": "/sitemap.xml",
-        "destination": "/sitemap.xml"
+        "source": "**",
+        "destination": "/index.html"
       }
     ]
   }
